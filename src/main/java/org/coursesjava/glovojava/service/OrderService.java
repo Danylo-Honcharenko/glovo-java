@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class OrderService {
+
     private OrderRepository orderRepository;
 
-    public ResponseEntity<Order> findOrder(Long id) {
+    public ResponseEntity<Order> findOrderById(Long id) {
         return orderRepository.findById(id)
                 .map(o -> ResponseEntity.ok().body(o))
                 .orElse(ResponseEntity.notFound().build());

@@ -26,18 +26,18 @@ public class GlovoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Order> getById(@PathVariable Long id) {
-        return orderService.findOrder(id);
+        return orderService.findOrderById(id);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order order) {
         orderRepository.updateById(id, order);
-        return orderService.findOrder(id);
+        return orderService.findOrderById(id);
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Order> addProductToOrder(@PathVariable Long id, @RequestBody Product product) {
-        ResponseEntity<Order> response = orderService.findOrder(id);
+        ResponseEntity<Order> response = orderService.findOrderById(id);
         if (response.getStatusCode().isError()) return response;
         product.setOrder(response.getBody());
         productRepository.save(product);
@@ -46,7 +46,7 @@ public class GlovoController {
 
     @DeleteMapping("/{id}/product/{name}")
     public ResponseEntity<Order> deleteProduct(@PathVariable Long id, @PathVariable String name) {
-        ResponseEntity<Order> response = orderService.findOrder(id);
+        ResponseEntity<Order> response = orderService.findOrderById(id);
         if (response.getStatusCode().isError()) return response;
         productRepository.deleteProductByIdAndName(id, name);
         return response;
