@@ -33,3 +33,4 @@ build/
 .vscode/
 
 /src/main/resources/api.http
+/src/main/resources/application.yaml
