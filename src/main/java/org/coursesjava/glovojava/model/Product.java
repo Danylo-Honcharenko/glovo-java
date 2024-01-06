@@ -17,5 +17,5 @@ public class Product {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private OrderEntity order;
 }
