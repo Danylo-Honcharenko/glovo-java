@@ -2,7 +2,7 @@ package org.coursesjava.glovojava.controller;
 
 import lombok.AllArgsConstructor;
 import org.coursesjava.glovojava.model.OrderEntity;
-import org.coursesjava.glovojava.model.Product;
+import org.coursesjava.glovojava.model.ProductEntity;
 import org.coursesjava.glovojava.repository.OrderRepository;
 import org.coursesjava.glovojava.repository.ProductRepository;
 import org.coursesjava.glovojava.service.OrderService;
@@ -40,7 +40,7 @@ public class GlovoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> addProductToOrder(@PathVariable Long id, @RequestBody Product product) {
+    public ResponseEntity<?> addProductToOrder(@PathVariable Long id, @RequestBody ProductEntity product) {
         ResponseEntity<OrderEntity> response = orderService.findOrderById(id);
         if (response.getStatusCode().isSameCodeAs(HttpStatus.NOT_FOUND)) return ResponseHandler.response("Order not found!", HttpStatus.NOT_FOUND);
         product.setOrder(response.getBody());

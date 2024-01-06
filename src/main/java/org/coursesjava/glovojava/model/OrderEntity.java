@@ -18,5 +18,5 @@ public class OrderEntity {
     private Integer cost;
     @JsonManagedReference
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<Product> products;
+    private List<ProductEntity> products;
 }
