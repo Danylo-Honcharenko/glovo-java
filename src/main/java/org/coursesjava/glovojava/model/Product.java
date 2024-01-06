@@ -16,6 +16,6 @@ public class Product {
     private Integer cost;
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn
     private OrderEntity order;
 }
