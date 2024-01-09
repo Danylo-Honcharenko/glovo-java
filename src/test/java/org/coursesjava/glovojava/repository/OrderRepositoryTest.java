@@ -50,12 +50,12 @@ public class OrderRepositoryTest {
 
     @Test
     public void findOrderById() {
-        assertTrue(orderService.findOrderById(1L).getStatusCode().isSameCodeAs(HttpStatus.OK));
+        assertTrue(orderService.findById(1L).getStatusCode().isSameCodeAs(HttpStatus.OK));
     }
 
     @Test
     public void notFoundOrderById() {
-        assertTrue(orderService.findOrderById(10L).getStatusCode().isSameCodeAs(HttpStatus.NOT_FOUND));
+        assertTrue(orderService.findById(10L).getStatusCode().isSameCodeAs(HttpStatus.NOT_FOUND));
     }
 
     @Test
@@ -68,17 +68,22 @@ public class OrderRepositoryTest {
         List<ProductEntity> products = new ArrayList<>();
         Long id = 4L;
         OrderEntity order = new OrderEntity();
-        order.setId(4);
         order.setCost(200);
         order.setDate(LocalDate.now());
         order.setProducts(products);
+
+        OrderEntity expected = new OrderEntity();
+        expected.setId(4);
+        expected.setCost(200);
+        expected.setDate(LocalDate.now());
+        expected.setProducts(products);
 
         orderRepository.updateById(id, order);
 
         Optional<OrderEntity> foundOrder = orderRepository.findById(id);
 
         assertTrue(foundOrder.isPresent());
-        assertEquals(order, foundOrder.get());
+        assertEquals(expected, foundOrder.get());
     }
 
     @Test

@@ -12,7 +12,19 @@ public class OrderService {
 
     private OrderRepository orderRepository;
 
-    public ResponseEntity<OrderEntity> findOrderById(Long id) {
+    public OrderEntity save(OrderEntity order) {
+        return orderRepository.save(order);
+    }
+
+    public void updateById(Long id, OrderEntity order) {
+        orderRepository.updateById(id, order);
+    }
+
+    public void deleteById(Long id) {
+        orderRepository.deleteById(id);
+    }
+
+    public ResponseEntity<OrderEntity> findById(Long id) {
         return orderRepository.findById(id)
                 .map(o -> ResponseEntity.ok().body(o))
                 .orElse(ResponseEntity.notFound().build());
