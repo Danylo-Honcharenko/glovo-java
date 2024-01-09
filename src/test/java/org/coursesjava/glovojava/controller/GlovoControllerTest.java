@@ -74,7 +74,6 @@ public class GlovoControllerTest {
     @Test
     public void updateOrder() throws Exception {
         OrderEntity order = new OrderEntity();
-        order.setId(1);
         order.setDate(LocalDate.now());
         order.setCost(150);
 
